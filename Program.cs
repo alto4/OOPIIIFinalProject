@@ -2,23 +2,27 @@
 
 namespace OOPFinalProject
 {
-    /*
-     * As of 2020/02/06 this just shows that things work.
-     * btw its pretty rare to get a flush even in the 100 decks
-     */
+    /// <summary>
+    /// Entry point for the game
+    /// </summary>
     class Program
     {
         static void Main(string[] args)
         {
-            for (int i = 0; i < 100; i++) // try to get a flush in 100 shuffled decks
-            {
-                Console.Write(i + ":");
-                TryFlush();
-            }
+            Deck testDeck1 = new Deck();
+
+            Console.WriteLine("Testing new shuffle algorithm...");
+            Console.WriteLine(testDeck1.ToString());
+            testDeck1.Shuffle();
+            Console.WriteLine(testDeck1.ToString());
+
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
 
+        /// <summary>
+        /// Looks for a sequence that makes a flush in a random deck, user for testing
+        /// </summary>
         static void TryFlush()
         {
             Deck myDeck = new Deck();
