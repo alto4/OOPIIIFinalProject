@@ -50,30 +50,49 @@ namespace OOPFinalProject
             }
         }
 
-        // TODO: make a better shuffle algorythm
+        public Deck(bool isAceHigh) : this() // high aces
+        {
+            Card.isAceHigh = isAceHigh;
+        }
+
+        public Deck(bool useTrump, Suit trumpSuit) : this() // setting the trump
+        {
+            Card.useTrumps = useTrump;
+            Card.trumpSuit = trumpSuit;
+        }
+
+        public Deck(bool isAceHigh, bool useTrumps, Suit trumpSuit) : this()
+        {
+            Card.isAceHigh = isAceHigh;
+            Card.useTrumps = useTrumps;
+            Card.trumpSuit = trumpSuit;
+        }
+
         /// <summary>
-        /// shuffle the deck, this is a trash algorythm but its purpose is to show how trash it is.
+        /// swaps each card at an index with a random card, 5 times.
         /// </summary>
         public void Shuffle()
         {
-            CardCollection newDeck = new CardCollection();
-            bool[] assigned = new bool[SIZE_OF_DECK];
-            Random sourceGen = new Random();
+            CardCollection randomDeck = new CardCollection();
+            Random randSource = new Random();
+            int randIndex = 0;
+            Card tempCardHolder;
 
-            for (int i = 0; i < SIZE_OF_DECK; i++)
+            for (int j = 0; j < 5; j++)
             {
-                int sourceCard = 0;
-                bool foundCard = false;
-                while (foundCard == false)
+                for (int i = 0; i < SIZE_OF_DECK; i++)
                 {
-                    sourceCard = sourceGen.Next(SIZE_OF_DECK);
-                    if (assigned[sourceCard] == false)
-                        foundCard = true;
+                    // Random index for each position
+                    randIndex = i + randSource.Next(SIZE_OF_DECK - i);
+
+                    // swap the cards
+                    tempCardHolder = cards[randIndex];
+                    cards[randIndex] = cards[i];
+                    cards[i] = tempCardHolder;
                 }
-                assigned[sourceCard] = true;
-                newDeck.Add(cards[sourceCard]);
             }
-            newDeck.CopyTo(cards);
+            // copy the random deck to this deck
+            randomDeck.CopyTo(cards);
         }
 
         /// <summary>
@@ -93,6 +112,18 @@ namespace OOPFinalProject
         {
             Deck newDeck = new Deck(cards.Clone() as CardCollection);
             return newDeck;
+        }
+
+        public override string ToString()
+        {
+            string allTheCards = "";
+
+            foreach (Card card in cards)
+            {
+                allTheCards += card.ToString() + "\n";
+            }
+
+            return allTheCards;
         }
     }
 }
