@@ -50,6 +50,25 @@ namespace OOPFinalProject
             }
         }
 
+        /// <summary>
+        /// return the card at the param index and remove it from the deck
+        /// </summary>
+        /// <param name="cardIndex">The cards index</param>
+        /// <returns>The Card at this index</returns>
+        public Card DrawCard(int cardIndex = 0)
+        {
+            if (cardIndex >= 0 && cardIndex <= 51)
+            {
+                Card tempCard = cards[cardIndex];
+                cards.RemoveAt(cardIndex);
+                return cards[cardIndex]; // card number 0 to SIZE_OF_DECK
+            }
+            else
+            {
+                throw new IndexOutOfRangeException(string.Format(" * Card index must be between {0} and {1}", 0, SIZE_OF_DECK - 1));
+            }
+        }
+
         public Deck(bool isAceHigh) : this() // high aces
         {
             Card.isAceHigh = isAceHigh;
