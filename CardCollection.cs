@@ -42,5 +42,14 @@ namespace OOPFinalProject
             }
             return newCards;
         }
+
+        /// <summary>
+        /// Displays a player's current hand
+        /// </summary>
+        /// <returns></returns>
+       public string ShowHand()
+        {
+            return "Hand:";
+        }
     }
 }

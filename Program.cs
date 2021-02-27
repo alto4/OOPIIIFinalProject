@@ -28,23 +28,35 @@ namespace OOPFinalProject
 
             // 2. Each player is dealt 6 cards
             CardCollection hand1 = new CardCollection();
+            CardCollection hand2 = new CardCollection();
 
             for(int i = 0; i < 6; i++)
             {
                 hand1.Add(testDeck1.DrawCard());
+                hand2.Add(testDeck1.DrawCard());
             }
-                       
-
+                    
             Console.WriteLine("Results of drawing cards and placing in player hand:");
             Console.WriteLine("Hand Length:" + hand1.Count);
-            Console.WriteLine("Updated Deck State:" + testDeck1.ToString());
+            Console.WriteLine("\nUpdated Deck :" + testDeck1.ToString());
 
             // 3. Bottom card is turned to face up state
+            Card startingTrumpCard = testDeck1.GetCard(0);
+            startingTrumpCard.isFaceUp = true;
+
+            Console.WriteLine("\nFirst card drawn! It's a {0} of {1}.", startingTrumpCard.Rank, startingTrumpCard.Suit);
+            Console.WriteLine("Testing faceup status of first drawn card: " + startingTrumpCard.isFaceUp);
 
             // 4. Suit of first card to be drawn becomes trump suit
+            Suit startingTrumpSuit = startingTrumpCard.Suit;
+            Console.WriteLine("\nThe starting trump suit is {0}.", startingTrumpCard.Suit);
 
             // ATTACK ROUND
             // 5. First attack - current player attacks by playing a face-up card from their hand that trumps 
+            Console.WriteLine("\nFirst players turn to attack");
+
+
+
 
             // 6. Defender attempts to beat attack card with a higher-ranking defence card
 

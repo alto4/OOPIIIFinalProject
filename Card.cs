@@ -15,6 +15,7 @@ namespace OOPFinalProject
     {
         private readonly Suit mySuit;
         private readonly Rank myRank;
+        public bool isFaceUp { get; set; }
 
         /// <summary>
         /// Enabling allows for a selected card to be valued higher than others
@@ -32,7 +33,7 @@ namespace OOPFinalProject
         {
             get { return myRank; }
         }
-
+        
         /// <summary>
         /// private default constructor of a Card object
         /// </summary>
@@ -43,10 +44,11 @@ namespace OOPFinalProject
         /// </summary>
         /// <param name="suit">The Card Suit</param>
         /// <param name="rank">The Card Rank</param>
-        public Card(Suit suit, Rank rank)
+        public Card(Suit suit, Rank rank, bool faceUp = false)
         {
             mySuit = suit;
             myRank = rank;
+            isFaceUp = faceUp;
         }
 
         /// <summary>
