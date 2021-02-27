@@ -55,10 +55,20 @@ namespace OOPFinalProject
             // 5. First attack - current player attacks by playing a face-up card from their hand that trumps 
             Console.WriteLine("\nFirst players turn to attack");
 
-
-
+            Console.WriteLine("\nPlayer's current hand: ");
+            hand1.ShowHand();
 
             // 6. Defender attempts to beat attack card with a higher-ranking defence card
+            Console.WriteLine("\nDefender's current hand: ");
+            hand2.ShowHand();
+
+            // Test sorting algorithm and display in console
+            Console.WriteLine("\nPlayer 2 hand being arranged from highest to lowest values to assist with card selection for defense/attack.");
+            Console.WriteLine(hand2.Count);
+            hand2.Sort();
+
+            Console.WriteLine("Show sorted hand.");
+            hand2.ShowHand();
 
             // 7. Defender loses - pick up all defending and attaching cards played during the attach round
 

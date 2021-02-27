@@ -47,9 +47,38 @@ namespace OOPFinalProject
         /// Displays a player's current hand
         /// </summary>
         /// <returns></returns>
-       public string ShowHand()
+       public void ShowHand()
         {
-            return "Hand:";
+             foreach (Card drawnCard in this)
+            {
+                Console.WriteLine("*************");
+                Console.WriteLine("* Rank: {0} \n* Suit: {1}", drawnCard.Rank, drawnCard.Suit);
+                Console.WriteLine("*************");
+            }
+        }
+
+        // TODO: BROKEN SORTING ALGORITHM, NEED TO REVISIT
+        /// <summary>
+        /// Reorders cards in a hand using bubble sort to range from highest to lowest
+        /// REFERENCE: https://dotnetcoretutorials.com/2020/05/10/basic-sorting-algorithms-in-c/
+        /// Description: I used this article as a refresher for basic sorting algorithms, and in particular modified the bubble sort example to sort a collection
+        /// </summary>
+        public CardCollection Sort()
+        {
+            for (int i = 0; i < this.Count; i++)
+            {
+                Console.WriteLine(this[i].ToString());
+
+                if ((i < this.Count - 1) && (this[i].Rank > this[i + 1].Rank))
+                {
+                    Card tempCard = this[i];
+                    this[i] = this[i + 1];
+                    this[i + 1] = tempCard;
+
+                }
+            }
+
+            return this;
         }
     }
 }
