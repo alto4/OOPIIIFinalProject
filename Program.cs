@@ -18,7 +18,7 @@ namespace OOPFinalProject
 
             // GAME COMMENCES
             // 1. Deck of 36 cards is shuffled
-            Deck testDeck1 = new Deck();
+            Deck testDeck1 = new Deck(true, Suit.Clubs);
 
             Console.WriteLine("Testing new shuffle algorithm...");
             Console.WriteLine(testDeck1.ToString());
@@ -49,28 +49,58 @@ namespace OOPFinalProject
             Console.WriteLine("Testing faceup status of first drawn card: " + startingTrumpCard.isFaceUp);
 
             // 4. Suit of first card to be drawn becomes trump suit
-            Suit startingTrumpSuit = startingTrumpCard.Suit;
             Console.WriteLine("\nThe starting trump suit is {0}.", startingTrumpCard.Suit);
 
             // ATTACK ROUND
-            // 5. First attack - current player attacks by playing a face-up card from their hand that trumps 
+            //// 5. First attack - current player attacks by playing a face-up card from their hand that trumps 
             Console.WriteLine("\nFirst players turn to attack");
 
             Console.WriteLine("\nPlayer's current hand: ");
             hand1.ShowHand();
 
-            // 6. Defender attempts to beat attack card with a higher-ranking defence card
-            Console.WriteLine("\nDefender's current hand: ");
-            hand2.ShowHand();
 
-            // Test sorting algorithm and display in console
-            Console.WriteLine("\nPlayer 2 hand being arranged from highest to lowest values to assist with card selection for defense/attack.");
-            Console.WriteLine(hand2.Count);
-            hand2.Sort();
+            // Keep track of best player choice based on nearest winnable rank to attacking card
+            int idealChoiceIndex =  0;
 
-            Console.WriteLine("Show sorted hand.");
-            hand2.ShowHand();
+            // Check for all cards in hand that are potential plays to beat current card
+            for(int i = 0; i < hand1.Count; i++)
+            {
+                if (hand1[i].Rank > startingTrumpCard.Rank)
+                {
+                    Console.WriteLine("Card #{0}, {1} of {2} IS an option to beat the {3} of {4}.", (i + 1), hand1[i].Rank, hand1[i].Suit, startingTrumpCard.Rank, startingTrumpCard.Suit);
+                    // Check for relationship between higher card in hand and card defending against
+                    Console.WriteLine("Card #{0}, {1} of {2} is {3} rank higher than {4} of {5}.", (i + 1), hand1[i].Rank, hand1[i].Suit, (hand1[i].Rank - startingTrumpCard.Rank), startingTrumpCard.Rank, startingTrumpCard.Suit);
 
+                    if (((int)hand1[i].Rank - (int)startingTrumpCard.Rank) < ((int)hand1[idealChoiceIndex].Rank - (int)startingTrumpCard.Rank)) 
+                    {
+                        idealChoiceIndex = i;
+                    }
+                } 
+                else
+                {
+                    Console.WriteLine("Card #{0}, {1} of {2} IS NOT an option to beat the {3} of {4}.", (i + 1), hand1[i].Rank, hand1[i].Suit, startingTrumpCard.Rank, startingTrumpCard.Suit);
+                }
+            }
+
+            // Inform user of the best choice of cards
+            if ((int)hand1[idealChoiceIndex].Rank > (int)startingTrumpCard.Rank)
+            {
+                Console.WriteLine("It has been determined that the best play is card #{0}, the {1} of {2}.", (idealChoiceIndex + 1), hand1[idealChoiceIndex].Rank, hand1[idealChoiceIndex].Suit);
+            } else
+            {
+                Console.WriteLine("Sorry. You cannot beat the current card you are up against.");
+            }
+            
+
+
+            //// 6. Defender attempts to beat attack card with a higher-ranking defence card
+            //Console.WriteLine("\nDefender's current hand: ");
+            //hand2.ShowHand();
+
+            //// Test sorting algorithm and display in console
+            //Console.WriteLine("\nPlayer 2 hand being arranged from highest to lowest values to assist with card selection for defense/attack.");
+            //Console.WriteLine(hand2.Count);
+            
             // 7. Defender loses - pick up all defending and attaching cards played during the attach round
 
             // 8. Defender is successful (no other player attacks or they successfully defend 6th attack card) and attack/defence cards discarded
