@@ -15,7 +15,7 @@ namespace OOPFinalProject
 
             // Gameplay Pseudo-Code
 
-
+            /*
             // GAME COMMENCES
             // 1. Deck of 36 cards is shuffled
             Deck testDeck1 = new Deck(true, Suit.Clubs);
@@ -110,8 +110,25 @@ namespace OOPFinalProject
             // 10. Each player draws cards from deck until they have 6 (or deck runs out) - order for draw is attacker, then clockwise, then defender
 
             // 11. REPEAT ATTACK ROUND STEPS 5-10
+            */
 
-            Console.WriteLine("Press any key to continue...");
+
+            // Initialize array of Player objects.
+            Player[] players = new Player[2];
+
+            // Get player name.
+            Console.WriteLine("Please enter your name: ");
+                string playerName = Console.ReadLine();
+                players[0] = new Player(playerName);
+                players[1] = new Player("Computer");
+
+            // Start game.
+            Game newGame = new Game();
+            newGame.SetPlayers(players);
+            int whoWon = newGame.PlayGame();
+
+            // Display winning player.
+            Console.WriteLine("{0} has won the game!", players[whoWon].Name);
             Console.ReadKey();
         }
 

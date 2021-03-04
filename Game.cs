@@ -30,13 +30,16 @@ namespace OOPFinalProject
 
         public void SetPlayers(Player[] newPlayers)
         {
-            if (newPlayers.Length > 7)
+            if (newPlayers.Length == 1)
+            {
+                Console.WriteLine("\n{0}, you are playing against the computer. Good luck!\n", newPlayers[0].Name);
+            }
+            else if (newPlayers.Length > 7)
                 throw new ArgumentException(
-                   "A maximum of 7 players may play this game.");
-
-            if (newPlayers.Length < 2)
+                   "\nA maximum of 7 players may play this game.");
+            else if (newPlayers.Length < 1)
                 throw new ArgumentException(
-                   "A minimum of 2 players may play this game.");
+                   "\nThere must be at least 2 players to continue to the game.");
 
             players = newPlayers;
         }
@@ -45,7 +48,7 @@ namespace OOPFinalProject
         {
             for (int p = 0; p < players.Length; p++)
             {
-                for (int c = 0; c < 7; c++)
+                for (int c = 0; c < 6; c++)
                 {
                     players[p].PlayHand.Add(playDeck.GetCard(currentCard++));
                 }
@@ -78,9 +81,18 @@ namespace OOPFinalProject
                 for (currentPlayer = 0; currentPlayer < players.Length;
                      currentPlayer++)
                 {
+                    // Draw starting trump card
+                    Card initialCardDrawn = playDeck.GetCard(currentCard++);
+                    Suit trumpSuit = initialCardDrawn.Suit;
+
+                    Console.WriteLine("\nThe starting trump suit is {0}.\n", trumpSuit);
+                   
+
+
                     // Write out current player, player hand, and the card on the
                     // table.
-                    Console.WriteLine("{0}'s turn.", players[currentPlayer].Name);
+                    Console.WriteLine("\n{0}'s turn.", players[currentPlayer].Name);
+                    Console.WriteLine("********************");
                     Console.WriteLine("Current hand:");
                     foreach (Card card in players[currentPlayer].PlayHand)
                     {
