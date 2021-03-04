@@ -1,7 +1,11 @@
-﻿/*  CardCollection.cs - Implements a concrete class that is 
- * 
- *  Author:     Eduardo San Martin Celi
- *  Since:      2020/02/06
+﻿/*@project          OOPFinal Projct
+ *@file             Card.cs 
+ *@version          1.0 
+ *@since            2021-03-04 
+ *@author           Eduardo San Martin Celi, Scott Alton, Nick Sturch-Flint
+ *@modified         This program is based on the code presented in chapter 11 of our course textbook. 
+ *@see              Beginning Visual C# 2012 Programming by Karli Watson et al.
+ *@description      This program demonstrates various extended functionalities of the Ch11CardLib class library.
  */
 
 using System;
@@ -70,14 +74,41 @@ namespace OOPFinalProject
         }
 
         #region "Operators"
+        /// <summary>
+        /// Equality operator - checks if 2 cards are made up of the same suit and rank
+        /// </summary>
+        /// <param name="card1">first card in comparison</param>
+        /// <param name="card2">second card in comparison</param>
+        /// <returns>boolean representing equality status</returns>
         public static bool operator ==(Card card1, Card card2) => ((card1.Suit == card2.Suit) && (card1.Rank == card2.Rank));
 
+        /// <summary>
+        /// Inequality operator - checks if 2 cards are not made up of the same suit and rank
+        /// </summary>
+        /// <param name="card1">first card in comparison</param>
+        /// <param name="card2">second card in comparison</param>
+        /// <returns>boolean representing inequality status</returns>
         public static bool operator !=(Card card1, Card card2) => !(card1 == card2);
 
+        /// <summary>
+        /// Equals - checks if 2 cards are made up of the same suit and rank
+        /// </summary>
+        /// <param name="card">card to compare to</param>
+        /// <returns>boolean representing equality status</returns>
         public override bool Equals(object card) => this == (Card)card;
 
+        /// <summary>
+        /// GetHashCode - returns cards hash code that identifies card using a unique integer
+        /// </summary>
+        /// <returns>integer hash code generated based on the card's suit and rank</returns>
         public override int GetHashCode() => 13 * (int)Suit + (int)Rank;
 
+        /// <summary>
+        /// Greater than operator - returns boolean representing the status of left card as greater than right card
+        /// </summary>
+        /// <param name="card1">the first card for comparison</param>
+        /// <param name="card2">the second card for comparison</param>
+        /// <returns>boolean representing status of first card as greater than second card</returns>
         public static bool operator >(Card card1, Card card2)
         {
             if (card1.Suit == card2.Suit)
@@ -104,10 +135,30 @@ namespace OOPFinalProject
             }
         }
 
+        // <summary>
+        /// Greater than or equal to operator - returns boolean representing the status of left card as greater than or equal to right card
+        /// </summary>
+        /// <param name="card1">the first card for comparison</param>
+        /// <param name="card2">the second card for comparison</param>
+        /// <returns>boolean representing status of first card as greater than or equal to second card</returns>
         public static bool operator >=(Card card1, Card card2) => (!(card1 < card2) || card1 == card2);
 
+
+        // <summary>
+        /// Less than operator - returns boolean representing the status of left card as less than or equal to right card
+        /// </summary>
+        /// <param name="card1">the first card for comparison</param>
+        /// <param name="card2">the second card for comparison</param>
+        /// <returns>boolean representing status of first card as less than the second card</returns>
         public static bool operator <(Card card1, Card card2) => !(card1 >= card2);
 
+
+        // <summary>
+        /// Less than or equal to operator - returns boolean representing the status of left card as less than or equal to right card
+        /// </summary>
+        /// <param name="card1">the first card for comparison</param>
+        /// <param name="card2">the second card for comparison</param>
+        /// <returns>boolean representing status of first card as less than or equal to second card</returns>
         public static bool operator <=(Card card1, Card card2) => !(card1 > card2);
         #endregion
 
