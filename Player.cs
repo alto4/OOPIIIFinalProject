@@ -2,7 +2,7 @@
  *@file             Player.cs 
  *@version          3.0 
  *@since            2021-03-04 
- *@author           Scott Alton
+ *@author           Eduardo San Martin Celi, Scott Alton, Nick Sturch-Flint
  *@modified         This program is based on the code presented in chapter 13 of our course textbook. 
  *@see              Beginning Visual C# 2012 Programming by Karli Watson et al.
  *@see              OOP4200-Tutorial-7-EventsAndExceptions.pdf
