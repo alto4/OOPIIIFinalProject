@@ -98,30 +98,29 @@ namespace OOPFinalProject
                     {
                         Console.WriteLine(card);
                     }
-                    Console.WriteLine("Card in play: {0}", playCard);
+                    Console.WriteLine("Initial card drawn from top of the deck: {0}", initialCardDrawn);
                     // Prompt player to pick up card on table or draw a new one.
                     bool inputOK = false;
                     do
                     {
-                        Console.WriteLine("Press T to take card in play or D to " +
-                                          "draw:");
+                        Console.WriteLine("Press T to throw card or S to skip");
                         string input = Console.ReadLine();
                         if (input.ToLower() == "t")
                         {
                             // Add card from table to player hand.
-                            Console.WriteLine("Drawn: {0}", playCard);
+                            Console.WriteLine("Thrown: {0}", playCard);
 
-                            // Remove from discarded cards if possible (if deck
-                            // is reshuffled it won't be there any more)
-                            if (discardedCards.Contains(playCard))
-                            {
-                                discardedCards.Remove(playCard);
-                            }
+                            //// Remove from discarded cards if possible (if deck
+                            //// is reshuffled it won't be there any more)
+                            //if (discardedCards.Contains(playCard))
+                            //{
+                            //    discardedCards.Remove(playCard);
+                            //}
 
-                            players[currentPlayer].PlayHand.Add(playCard);
+                            players[currentPlayer].PlayHand.Remove(playCard);
                             inputOK = true;
                         }
-                        if (input.ToLower() == "d")
+                        if (input.ToLower() == "s")
                         {
                             // Add new card from deck to player hand.
                             Card newCard;
